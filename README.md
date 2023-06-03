@@ -1,18 +1,75 @@
-# Vue 3 + TypeScript + Vite
+# ns-vue-flatpickr
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+A Vue component wrapper for the [NS Flatpickr](https://www.npmjs.com/package/ns-flatpickr) date picker library. NS Flatpickr is a modified version of Flatpickr that allows for the usage of localized year values, such as the Buddhist year.
 
-## Recommended IDE Setup
+## Installation
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+```bash
+npm install ns-vue-flatpickr
+```
 
-## Type Support For `.vue` Imports in TS
+## Usage
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+```vue
+<template>
+  <div>
+    <Flatpickr v-model="selectedDate" :options="flatpickrOptions"></Flatpickr>
+  </div>
+</template>
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+<script>
+   import { defineComponent } from 'vue';
+   import { Flatpickr } from 'ns-vue-flatpickr';
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+   export default defineComponent({
+   components: {
+      Flatpickr,
+   },
+   data() {
+      return {
+         selectedDate: null,
+         flatpickrOptions: {
+         // Configure Flatpickr options here
+         },
+      };
+   },
+   });
+</script>
+```
+#### Wrap custom input
+```vue
+<Flatpickr v-model="selectedDate" wrap :options="{ clickOpens: false }">
+   <input type="text" data-input />
+   <button class="input-button" title="toggle" data-toggle>
+      Open
+   </button>
+   <button class="input-button" title="clear" data-clear>
+      Clear
+   </button>
+</Flatpickr>
+```
+
+## Props
+
+| Prop           | Type     | Description                                         |
+| -------------- | -------- | --------------------------------------------------- |
+| `options`      | Object   | Configuration options for Flatpickr.                |
+| `modelValue`   | Any      | The selected date(s) value.                         |
+| `disabled`     | Boolean  | Determines if the date picker is disabled.           |
+| `wrap`         | Boolean  | Specifies whether to wrap the date picker.           |
+| `events`       | Array    | List of Flatpickr event hooks to bind to.           |
+
+## Events
+
+| Event          | Description                                         |
+| -------------- | --------------------------------------------------- |
+| `input`        | Triggered when the selected date(s) change.         |
+| `change`       | Triggered when the selected date(s) change.         |
+| `blur`         | Triggered when the date picker loses focus.         |
+| `close`        | Triggered when the date picker closes.              |
+
+For more details on the available options and events, please refer to the [Flatpickr documentation](https://flatpickr.js.org/).
+
+## License
+
+This library is licensed under the MIT License. See the [LICENSE](./LICENSE) file for more details.

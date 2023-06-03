@@ -1,7 +1,7 @@
 {
   "name": "ns-vue-flatpickr",
-  "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "A lightweight and customizable date/time picker component for Vue.js applications",
   "type": "module",
   "main": "./dist/ns-vue-flatpickr.umd.js",
   "module": "./dist/ns-vue-flatpickr.js",
@@ -33,5 +33,20 @@
     "vite": "^4.3.9",
     "vite-plugin-dts": "^2.3.0",
     "vue-tsc": "^1.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nutthawutkongsopa/ns-vue-flatpickr"
+  },
+  "keywords": [
+    "flatpickr",
+    "datetimepicker",
+    "VueJs",
+    "datepicker"
+  ],
+  "author": "Nutthawut Kongsopa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nutthawutkongsopa/ns-vue-flatpickr/issues"
   }
 }
