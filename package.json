@@ -3,15 +3,9 @@
   "version": "0.2.1",
   "description": "A lightweight and customizable date/time picker component for Vue.js applications",
   "type": "module",
-  "main": "./dist/ns-vue-flatpickr.umd.js",
-  "module": "./dist/ns-vue-flatpickr.js",
-  "types": "./dist/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./dist/ns-vue-flatpickr.esm.js",
-      "require": "./dist/ns-vue-flatpickr.js"
-    }
-  },
+  "main": "dist/index.umd.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist",
     "src"

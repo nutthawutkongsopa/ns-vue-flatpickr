@@ -10,7 +10,7 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
       name: "NSVueFlatpickr",
-      fileName: "ns-vue-flatpickr",
+      fileName: "index",
     },
     rollupOptions: {
       external: ["vue"],
