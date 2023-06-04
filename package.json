@@ -42,7 +42,13 @@
     "flatpickr",
     "datetimepicker",
     "VueJs",
-    "datepicker"
+    "datepicker",
+    "buddhist year",
+    "calendar",
+    "buddhist calendar",
+    "buddhist",
+    "ปี พ.ศ.",
+    "ปฏิทิน พ.ศ."
   ],
   "author": "Nutthawut Kongsopa",
   "license": "MIT",
