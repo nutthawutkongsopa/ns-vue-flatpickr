@@ -219,8 +219,6 @@ export default defineComponent({
         /* istanbul ignore if */
         if (this.fp) return;
 
-        console.log(this.$el)
-
         // Init flatpickr
         this.fp = flatpickr(this.getElem(), this.prepareConfig());
 

@@ -1,3 +1,4 @@
 import Flatpickr from "./component";
+import fp from 'ns-flatpickr'
 
-export { Flatpickr }
+export { fp, Flatpickr }
