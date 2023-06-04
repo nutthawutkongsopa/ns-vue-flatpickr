@@ -62,6 +62,10 @@ export default defineComponent({
             type: Boolean,
             default: false
         },
+        mode: {
+            type: String as PropType<"single" | "multiple" | "range" | "time">,
+            default: "single"
+        },
         events: {
             type: Array as PropType<flatpickr.Options.HookKey[]>,
             default: () => includedEvents
@@ -100,6 +104,9 @@ export default defineComponent({
 
             // Set initial date without emitting any event
             safeConfig.defaultDate = this.modelValue || safeConfig.defaultDate;
+            if (this.wrap) safeConfig.wrap = this.wrap
+
+            safeConfig.mode = this.mode
 
             return safeConfig;
         },
@@ -124,7 +131,12 @@ export default defineComponent({
         },
 
         onChange(selectedDates: Date[], _dateStr: string, _instance: flatpickr.Instance) {
-            this.$emit('update:modelValue', selectedDates);
+            if (this.mode == "single" || this.mode == "time") {
+                this.$emit('update:modelValue', selectedDates[0] || null);
+            } else {
+                this.$emit('update:modelValue', selectedDates);
+            }
+
         },
         fpInput(): HTMLInputElement {
             return this.fp!.altInput || this.fp!.input;
@@ -193,9 +205,6 @@ export default defineComponent({
             // Notify flatpickr instance that there is a change in value
             this.fp?.setDate(newValue, false);
         }
-    },
-    beforeMount() {
-        if (this.wrap) this.options.wrap = this.wrap
     },
     beforeUnmount() {
         /* istanbul ignore else */
