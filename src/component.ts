@@ -70,6 +70,10 @@ export default defineComponent({
             type: Array as PropType<flatpickr.Options.HookKey[]>,
             default: () => includedEvents
         },
+        changeDateOnly: {
+            type: Boolean,
+            default: false
+        }
     },
     data() {
         return {
@@ -132,11 +136,21 @@ export default defineComponent({
 
         onChange(selectedDates: Date[], _dateStr: string, _instance: flatpickr.Instance) {
             if (this.mode == "single") {
-                this.$emit('update:modelValue', selectedDates[0] || null);
+                if (this.changeDateOnly && selectedDates[0]) {
+                    const newDate = selectedDates[0];
+                    const oldDate = this.modelValue instanceof Date ? this.modelValue : null;
+                    if (oldDate) {
+                        this.$emit('update:modelValue', new Date(newDate.getFullYear(), newDate.getMonth(), newDate.getDate(), oldDate.getHours(), oldDate.getMinutes(), oldDate.getSeconds(), oldDate.getMilliseconds()));
+                    } else {
+                        this.$emit('update:modelValue', selectedDates[0] || null);
+                    }
+                } else {
+                    this.$emit('update:modelValue', selectedDates[0] || null);
+                }
             } else if (this.mode == "time") {
                 const newDate = this.modelValue instanceof Date ? this.modelValue : new Date();
                 const newTime = selectedDates[0] || null;
-                if(newTime) {
+                if (newTime) {
                     this.$emit('update:modelValue', new Date(newDate.getFullYear(), newDate.getMonth(), newDate.getDate(), newTime.getHours(), newTime.getMinutes(), newTime.getSeconds(), newTime.getMilliseconds()));
                 } else {
                     this.$emit('update:modelValue', null);

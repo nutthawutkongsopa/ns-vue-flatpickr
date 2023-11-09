@@ -6,7 +6,7 @@
         </div>
         <div>
             <h3>Allow Input</h3>
-            <Flatpickr v-model="selectedDate" :options="{ allowInput: true }" />
+            <Flatpickr v-model="selectedDate" :options="{ allowInput: true }" change-date-only />
         </div>
         <div>
             <h3>Allow Input Time</h3>
