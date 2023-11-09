@@ -9,6 +9,10 @@
             <Flatpickr v-model="selectedDate" :options="{ allowInput: true }" />
         </div>
         <div>
+            <h3>Allow Input Time</h3>
+            <Flatpickr mode="time" v-model="selectedDate" :options="{ allowInput: true, dateFormat: 'H:i:S', enableSeconds: true, time_24hr: true }" />
+        </div>
+        <div>
             <h3>Locale</h3>
             <Flatpickr v-model="selectedDate" :options="{ locale: 'th', useLocaleYear: true }" />
         </div>

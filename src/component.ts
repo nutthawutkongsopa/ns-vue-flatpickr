@@ -131,8 +131,16 @@ export default defineComponent({
         },
 
         onChange(selectedDates: Date[], _dateStr: string, _instance: flatpickr.Instance) {
-            if (this.mode == "single" || this.mode == "time") {
+            if (this.mode == "single") {
                 this.$emit('update:modelValue', selectedDates[0] || null);
+            } else if (this.mode == "time") {
+                const newDate = this.modelValue instanceof Date ? this.modelValue : new Date();
+                const newTime = selectedDates[0] || null;
+                if(newTime) {
+                    this.$emit('update:modelValue', new Date(newDate.getFullYear(), newDate.getMonth(), newDate.getDate(), newTime.getHours(), newTime.getMinutes(), newTime.getSeconds(), newTime.getMilliseconds()));
+                } else {
+                    this.$emit('update:modelValue', null);
+                }
             } else {
                 this.$emit('update:modelValue', selectedDates);
             }
